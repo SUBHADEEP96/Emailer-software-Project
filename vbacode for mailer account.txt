@@ -1,0 +1,579 @@
+Email account setup
+
+name:Thinksurfmedia
+
+mail:thinksurfmedia@gmail.com
+
+pass:123456
+
+
+new profile
+
+profile name:thinksurfmedia
+
+gmail incoming:imap.gmail.com
+
+gmail outgoing:smtp.gmail.com
+
+
+
+code:
+
+Sub SENDMAIL()
+
+Dim OL As Outlook.Application
+
+Dim OLMAIL As Outlook.MailItem
+
+
+Lrow = Sheet1.Range("A" & Rows.Count).End(xlUp).Row
+
+For I = 2 To Lrow
+
+Set OL = New Outlook.Application
+
+Set OLMAIL = OL.CreateItem(olMailItem)
+
+With OLMAIL
+
+.To = Sheet1.Cells(I, 1).Value
+.Subject = Sheet1.Cells(I, 2).Value
+.Body = Sheet1.Cells(I, 3).Value
+
+End With
+
+OLMAIL.Send
+
+Next
+
+MsgBox "sent all mail Successfully"
+
+
+
+End Sub
+
+
+'cdo library code for sending mail
+
+Dim mail    As CDO.Message
+    Dim config  As CDO.Configuration
+    
+    Set mail = CreateObject("CDO.Message")
+    Set config = CreateObject("CDO.Configuration")
+    
+    config.Fields(cdoSendUsingMethod).Value = cdoSendUsingPort
+    config.Fields(cdoSMTPServer).Value = "mail.mycompany.invalid"
+    config.Fields(cdoSMTPServerPort).Value = 25
+    config.Fields.Update
+    
+    Set mail.Configuration = config
+    
+    With mail
+        .To = "someone@somewhere.invalid"
+        .From = "me@mycompany.invalid"
+        .Subject = "First email with CDO"
+        .TextBody = "This is the body of the first plain text email with CDO."
+        
+        .AddAttachment "C:\path\to\a\file.dat"
+        
+        .Send
+    End With
+    
+    Set config = Nothing
+    Set mail = Nothing
+
+Another code:
+
+Sub send_mail_via_Gmail()
+
+Dim myMail As CDO.Message
+
+'creating new instance of myMail
+
+
+Set myMail = New CDO.Message
+
+'configuration starts
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtp.gmail.com"
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 25
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "Jamessmithh500@gmail.com"
+
+myMail.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "Welcome@123"
+
+myMail.Configuration.Fields.Update
+
+With myMail
+
+.Subject = "Test Email From Thinksurfmedia LLP"
+
+.From = "Jamessmithh500@gmail.com"
+
+.To = "thinksurfmedia@gmail.com;tataineogi55@gmail.com"
+
+.TextBody = "We welcome You"
+
+End With
+
+On Error Resume Next
+
+myMail.Send
+
+'MsgBox("Mail has been sent")
+
+Set myMail = Nothing
+
+
+
+End Sub
+
+
+
+----------------------------------------------------------
+
+Basic VBA Code terminology:
+
+For massage with variable value:
+
+Private Sub CommandButton1_Click()
+
+Dim password As String
+
+password = "1234abcd"
+
+
+Dim num As Integer
+
+num = 1234
+
+Dim bday As Date
+
+bday = 6 / 9 / 1996
+
+
+
+MsgBox "Passowrd is " & password & Chr(10) & "Value of num is " & num & Chr(10) & "Value of Birthday is " & bday
+      
+
+
+End Sub
+
+
+'For function
+
+Function FindArea()
+
+Dim length As Double
+
+Dim width As Double
+
+length = InputBox("Enter Length Please", "Enter Value")
+
+width = InputBox("Enter Width Please", "Enter Value")
+
+FindArea = length * width
+
+End Function
+
+
+
+
+
+'for loop
+
+'Dim a As Integer
+
+
+'a = 10
+
+'For i = 0 To a Step 2
+
+
+'MsgBox "The Value is i is : " & i
+
+'Next
+
+
+'for each loop
+
+
+'fruits in array
+
+'fruits = Array("apple", "orange", "banana")
+
+Dim fruitnames As Variant
+
+For Each Item In fruits
+
+fruitnames = fruitnames & Item & Chr(10)
+
+Next
+
+MsgBox fruitnames
+
+while-wend loop
+
+Dim Counter: Counter = 10
+
+While Counter < 15
+
+
+Counter = Counter + 1
+
+MsgBox "val" & Counter
+
+Wend
+
+'Do While
+
+Do While i < 10
+
+i= i + 1
+
+MsgBox " val " & i
+
+Loop
+
+
+'Do Until
+
+
+i = 10
+
+Do Until i > 15
+
+
+i = i + 1
+
+MsgBox "val " & i
+
+Loop
+
+
+'Loop Control Statement
+
+Loop control statements change execution from its normal sequence.
+
+ When execution leaves a scope, 
+
+
+all the remaining statements in the loop are NOT executed.
+
+'"Exit For" Statement
+
+Dim a As Integer
+
+a = 10
+
+For i = 0 To a Step 2
+
+MsgBox ("val :" & i)
+
+If i = 4 Then
+ 
+ 
+ i = i * 10
+ 
+ MsgBox "The val :" & i
+ 
+ 
+ 
+Exit For
+
+End If
+
+Next
+
+Exit Do Statement
+i = 0
+   Do While i <= 100
+   
+   If i > 10 Then
+    
+    Exit Do
+    
+    End If
+    
+    MsgBox "the val" & i
+    i = i + 2
+    Loop
+
+
+condition statement
+
+'if statement
+
+    Dim x As Integer
+    
+    Dim y As Integer
+    
+    x = 234
+    
+    y = 32
+    
+    If x > y Then
+    MsgBox "ok alright"
+    
+    End If
+
+
+'if else
+
+ Dim a As Integer
+    
+    Dim b As Integer
+    
+    a = 20
+    
+    b = 30
+    
+    
+    If b < a Then
+    
+    MsgBox "alright"
+    
+    Else
+    
+    MsgBox "not okey"
+    
+    End If
+
+'If ElseIf
+Dim a As Integer
+
+Dim b As Integer
+
+a = 10
+b = 10
+
+If a > b Then
+
+MsgBox "a is greater"
+
+ElseIf b > a Then
+
+MsgBox " b is greater"
+
+Else
+
+MsgBox " a and b are Equal"
+
+End If
+
+    
+'Nested If statement
+
+Dim a As Integer
+
+a = 0
+
+If a > 0 Then
+
+MsgBox "ve"
+
+If a = 1 Then
+ MsgBox "Neither Prime Nor Composite"
+
+ElseIf a = 2 Then
+ MsgBox "even "
+ 
+ Else
+ 
+ MsgBox "not"
+ 
+ End If
+ 
+ ElseIf a < 0 Then
+ 
+ MsgBox "-ve"
+ 
+ Else
+ MsgBox "zero"
+ 
+ End If
+ 
+'Switch case
+
+Dim v As Integer
+
+v = 4
+
+Select Case v
+
+Case 1
+
+MsgBox "1"
+
+Case 2
+
+MsgBox "2"
+
+Case 3
+
+MsgBox "3"
+
+Case Else
+
+MsgBox "unknown"
+
+End Select
+
+
+
+'InStr function returns the first occurance of one string with another string
+
+
+ Dim str As Variant
+ 
+ str = "Microsoft VBAscript"
+ 
+ MsgBox ("Line 1 :" & InStr(1, str, "M"))
+ 
+ 
+
+Date and Time 
+
+
+String
+
+
+'string
+
+'Len
+
+Dim a As Variant
+
+Dim b As Variant
+
+a = "Microsoft VBScript"
+
+MsgBox "len : " & Len(a)
+
+b = "raja paul"
+
+MsgBox "len : " & Len(b)
+
+'Replace
+
+Dim a As Variant
+
+a = "Thinksurfmedia LLP"
+
+MsgBox "line : " & Replace(a, "LLP", "PVT LTD")
+
+
+'Space
+
+Dim a As Variant
+ a = "raja"
+ 
+ Dim b As Variant
+ 
+ b = "paul"
+ 
+ MsgBox (a & Space(2) & b)
+
+'StrReverse
+MsgBox ("Line : " & StrReverse("Nilesh Rastogi"))
+
+MsgBox ("Line : " & StrReverse("Pawan Jaiswal"))
+
+MsgBox ("Line : " & StrReverse("Priya Agarwal"))
+
+
+'Array
+
+Dim arr(4)
+
+arr(0) = "1"
+
+arr(1) = "Thinksurfmedia LLp"
+
+arr(2) = "thinksurfmedia@gmail.com"
+
+arr(3) = #10/24/2019#
+
+arr(4) = #12:48:00 PM#
+
+
+
+
+
+MsgBox ("val : " & arr(0))
+ MsgBox ("val : " & arr(1))
+ 
+MsgBox ("val : " & arr(3))
+
+MsgBox ("val : " & arr(4))
+
+
+'Multi-Dimensional array
+
+
+Dim arr(2, 3) As Variant  '3 rows and 4 columns
+
+
+arr(0, 0) = "one"
+
+arr(0, 1) = "two"
+
+arr(2, 3) = "five"
+
+
+MsgBox ("val : " & arr(0, 1))
+
+MsgBox ("val : " & arr(2, 3))
+
+'ReDim Statement is used to declare dynamic-array variables and allocate 
+
+or reallocate storage space
+
+ReDim [preserve] varname(subscripts) [, varname(subscripts)]
+
+
+ 'ReDim Statement
+
+Dim a() As Variant
+
+i = 0
+
+ReDim a(5)
+
+a(0) = "XYZ"
+
+a(1) = 41.25
+
+a(2) = 22
+
+ReDim Preserve a(7)
+
+
+For i = 3 To 7
+
+a(i) = i
+
+Next
+
+'to Fetch the output
+
+For i = 0 To UBound(a)
+
+MsgBox a(i)
+
+Next
+
+
+
+
+
+
+
+    
