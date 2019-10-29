@@ -633,4 +633,202 @@ Next row
 End Sub
 
 
+-----
+
+
+
+---
+
+
+new code--important(sending mails from unlimited gmails to unlimited gmails)
+
+
+Private Sub CommandButton1send_Click()
+
+
+Dim Mail As New Message
+
+Dim Config As Configuration: Set Config = Mail.Configuration
+
+Config(cdoSendUsingMethod) = cdoSendUsingPort
+Config(cdoSMTPServer) = "smtp.gmail.com"
+Config(cdoSMTPServerPort) = 25
+Config(cdoSMTPAuthenticate) = cdoBasic
+Config(cdoSMTPUseSSL) = True
+Config(cdoSendUserName) = "Jamessmithh500@gmail.com"
+Config(cdoSendPassword) = "Welcome@123"
+
+Config.Fields.Update
+
+
+
+
+
+
+
+Dim rng As Range: Set rng = Application.Range("B2:D4")
+
+Dim row As Range
+
+For Each row In rng.Rows
+    Mail.To = row.Cells(2).Value
+    Mail.From = Config(cdoSendUserName)
+    
+    Mail.Subject = "Testing Purpose"
+    Mail.HTMLBody = "Hi ,How are You?"
+    Mail.Send
+    row.Cells(3).Value = "sent"
+    
+    
+    
+    
+    
+    
+Next row
+
+'2
+
+Dim Maila As New Message
+
+Dim Configa As Configuration: Set Configa = Maila.Configuration
+
+Configa(cdoSendUsingMethod) = cdoSendUsingPort
+Configa(cdoSMTPServer) = "smtp.gmail.com"
+Configa(cdoSMTPServerPort) = 25
+Configa(cdoSMTPAuthenticate) = cdoBasic
+Configa(cdoSMTPUseSSL) = True
+Configa(cdoSendUserName) = "AleciaBoothtg@gmail.com"
+Configa(cdoSendPassword) = "ziW9Ieshet"
+
+Configa.Fields.Update
+
+
+
+
+
+
+Dim rnga As Range: Set rnga = Application.Range("B2:D4")
+
+
+
+Dim rowa As Range
+
+For Each rowa In rnga.Rows
+    Maila.To = rowa.Cells(2).Value
+    Maila.From = Configa(cdoSendUserName)
+    
+    Maila.Subject = "Testing Purpose"
+    Maila.HTMLBody = "Hi ,How are You?"
+    Maila.Send
+    rowa.Cells(3).Value = "sent"
+    
+    
+    
+    
+    
+    
+Next rowa
+
+
+'3
+
+
+Dim Mailb As New Message
+
+Dim Configb As Configuration: Set Configb = Mailb.Configuration
+
+Configb(cdoSendUsingMethod) = cdoSendUsingPort
+Configb(cdoSMTPServer) = "smtp.gmail.com"
+Configb(cdoSMTPServerPort) = 25
+Configb(cdoSMTPAuthenticate) = cdoBasic
+Configb(cdoSMTPUseSSL) = True
+Configb(cdoSendUserName) = "AnnikaDixonse@gmail.com"
+Configb(cdoSendPassword) = "uiS4Xoo31"
+
+Configb.Fields.Update
+
+
+
+
+
+
+
+Dim rngb As Range: Set rngb = Application.Range("B2:D4")
+
+Dim rowb As Range
+
+For Each rowb In rngb.Rows
+    Mailb.To = rowb.Cells(2).Value
+    Mailb.From = Configb(cdoSendUserName)
+    
+    Mailb.Subject = "Testing Purpose"
+    Mailb.HTMLBody = "Hi ,How are You?"
+    Mailb.Send
+    rowb.Cells(3).Value = "sent"
+    
+    
+    
+    
+    
+    
+Next rowb
+
+'4
+
+
+
+Dim Mailc As New Message
+
+Dim Configc As Configuration: Set Configc = Mailc.Configuration
+
+Configc(cdoSendUsingMethod) = cdoSendUsingPort
+Configc(cdoSMTPServer) = "smtp.gmail.com"
+Configc(cdoSMTPServerPort) = 25
+Configc(cdoSMTPAuthenticate) = cdoBasic
+Configc(cdoSMTPUseSSL) = True
+Configc(cdoSendUserName) = "KayceeGrantaw25@gmail.com"
+Configc(cdoSendPassword) = "Zohshs8ash"
+
+Configc.Fields.Update
+
+
+
+
+
+
+
+Dim rngc As Range: Set rngc = Application.Range("B2:D4")
+
+Dim rowc As Range
+
+For Each rowc In rngc.Rows
+    Mailc.To = rowc.Cells(2).Value
+    Mailc.From = Configc(cdoSendUserName)
+    
+    Mailc.Subject = "Testing Purpose"
+    Mailc.HTMLBody = "Hi ,How are You?"
+    Mailc.Send
+    row.Cells(3).Value = "sent"
+    
+    
+    
+    
+    
+    
+Next rowc
+
+
+
+
+End Sub
+
+
+
+
+
+
+
+
+
+
 
