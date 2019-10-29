@@ -570,10 +570,67 @@ MsgBox a(i)
 
 Next
 
+---
+
+
+Debug.Print row.Cells(1).Value
+    Debug.Print row.Cells(2).Value
+    Debug.Print "-----------------"
+
+
+    ---new code
+
+Private Sub CommandButton1send_Click()
+
+Dim Mail As New Message
+
+Dim Config As Configuration: Set Config = Mail.Configuration
+
+Config(cdoSendUsingMethod) = cdoSendUsingPort
+Config(cdoSMTPServer) = "smtp.gmail.com"
+Config(cdoSMTPServerPort) = 25
+Config(cdoSMTPAuthenticate) = cdoBasic
+Config(cdoSMTPUseSSL) = True
+Config(cdoSendUserName) = "Jamessmithh500@gmail.com"
+Config(cdoSendPassword) = "Welcome@123"
+
+Config.Fields.Update
 
 
 
 
 
 
+
+Dim rng As Range: Set rng = Application.Range("B2:D4")
+
+Dim row As Range
+
+For Each row In rng.Rows
+    Mail.To = row.Cells(2).Value
+    Mail.From = Config(cdoSendUserName)
     
+    Mail.Subject = "Testing Purpose"
+    Mail.HTMLBody = "Hi ,How are You?"
+    Mail.Send
+    row.Cells(3).Value = "sent"
+    
+    
+    
+    
+    
+    
+Next row
+
+
+
+
+
+
+
+
+
+End Sub
+
+
+
